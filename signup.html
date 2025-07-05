@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #7ab3dc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.signup-container {
+    background-color: #ffffff;
+    padding: 20px 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 300px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #444;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border-radius: 14px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #099214;
+    color: white;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1976d2;
+}
+
+div p {
+    text-align: center;
+    font-size: 13px;
+    margin-top: 15px;
+    color: #555;
+}
+
+a {
+    display: block;
+    text-align: center;
+    color: #2196f3;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+</style>
+
+<body>
+    <div class="signup-container">
+    <h1>Create An Account</h1>
+    <label for="">Enter Your Name</label>
+    <input id="name" type="text">
+    <label for="">Enter Your Email</label>
+    <input id="email" type="text">
+    <label for="">Enter Your Password</label>
+    <input id="password" type="text">
+    <button onclick="signup()">Create an Account</button>
+    <p>If you have already account</p>
+    <a href="login.html">LoginHere</a>
+</div>
+    
+   
+    
+    
+    <script>
+        
+            
+            async function signup(){
+                var myName = document.getElementById("name").value
+                var myEmail = document.getElementById("email").value
+                var myPassword = document.getElementById("password").value
+                var data = {
+                name : myName,
+                email : myEmail,
+                password : myPassword
+            }
+            if(myName == 0 && myEmail == 0 && myPassword == 0){
+                alert("fill all the details")
+            }else{
+            var responce = await fetch("https://685b837a89952852c2d9cbfd.mockapi.io/data",{
+                method : "post",
+                headers : {
+                    "Content-Type" : "application/json"
+                },
+                body : JSON.stringify(data)
+            })
+            if(responce.ok){
+                alert("signup successfully")
+            window.location.href = "login.html"
+        }else{
+            alert("Failed, TryAgain...")
+        }
+    }
+        }   
+
+        
+    </script>
+    
+</body>
+</html>

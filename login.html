@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+        background-color: #1156b0;
+    }
+
+    .login-box {
+        background: #fff;
+        padding: 30px 40px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+
+    .login-box h1 {
+        margin-bottom: 20px;
+    }
+
+    .login-box label {
+        display: block;
+        margin: 10px 0 5px;
+        text-align: left;
+    }
+
+    .login-box input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .login-box button {
+        width: 100%;
+        padding: 10px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .login-box button:hover {
+        background: #0056b3;
+    }
+</style>
+<body>
+    <div class="login-box">
+    <h1>LoginHere</h1>
+    <label for="">Enter your Email</label>
+    <input id="email" type="text">
+    <label for="">Enter your Password</label>
+    <input id="password" type="text">
+    <button onclick="login()">Login</button>
+</div>
+    <script>
+        async function login(){
+
+            var data1 = document.getElementById("email").value
+            var data2 = document.getElementById("password").value
+
+            var data = await fetch("https://685b837a89952852c2d9cbfd.mockapi.io/data")
+            var responce = await data.json()
+            var result = responce.find(item =>item.email == data1 && item.password == data2)
+            if(result){
+                alert("login successfully")
+                window.location.href = "index.html"
+            }else{
+                alert("invalid credentials")
+            }
+            
+            
+        }        
+            
+        
+        
+    </script>
+    
+</body>
+</html>
